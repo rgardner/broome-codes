@@ -17,55 +17,53 @@ def add_email():
             if line.startswith('['):
                 events.append(line)
 
-        for event in events:
-            print(event)
+        for event_name in events:
+            print(event_name)
 
         with open('BroomeCodes.txt', 'a') as output:
-            for event in events:
-                if 'Stream' in event:
-                    output.write('Stream, {}'.format(event))
-                elif 'FFiR' in event:
-                    output.write('FFiR, {}'.format(event))
-                elif 'BEAST' in event:
-                    output.write('BEAST, {}'.format(event))
-                elif 'Floor' in event:
-                    output.write('Floor, {}'.format(event))
-                elif 'Service' in event:
-                    output.write('Service, {}'.format(event))
-                elif 'All Hall' in event:
-                    output.write('All Hall, {}'.format(event))
+            for event_name in events:
+                if 'Stream' in event_name:
+                    output.write('Stream, ' + event_name)
+                elif 'FFiR' in event_name:
+                    output.write('FFiR, ' + event_name)
+                elif 'BEAST' in event_name:
+                    output.write('BEAST, ' + event_name)
+                elif 'Floor' in event_name:
+                    output.write('Floor, ' + event_name)
+                elif 'Service' in event_name or 'All Hall in' in event_name:
+                    output.write('All Hall, ' + event_name)
                 else:
-                    output.write('Other, {}'.format(event))
+                    output.write('Other, ' + event_name)
 
 
 def log_attendance():
     with open('BroomeCodes.txt', 'r') as events_file:
         events = events_file.readlines()
 
-    for i, event in enumerate(events):
-        print('{} - {}'.format(i, event))
+    for i, event_name in enumerate(events):
+        print(str(i) + ' - ' + event_name)
 
-    response = input ('Please enter the corresponding event number: ')
+    response = input('Please enter the corresponding event number: ')
     if 'main menu' in response:
         return
     event_index  = int(response)
     if event_index < len(events):
-        event = events[event_index]
-        with open('nicole_broome.txt', 'a+') as nicole_stats:
-            nicole_stats.write(event)
+        attended_event_name = events[event_index]
+        with open('nicole_broome.txt', 'a') as nicole_stats:
+            nicole_stats.write(attended_event_name)
     else:
         print('Invalid number')
 
 
 def my_stats():
     stats = collections.defaultdict(int)
-    with open('nicole_broome.txt', 'r+') as nicole_stats:
+    with open('nicole_broome.txt', 'r') as nicole_stats:
         for line in nicole_stats.readlines():
             stream_type = line.split(',')[0]
             stats[stream_type] += 1
 
     for event_type, count in stats.items():
-        print('{} - {}'.format(event_type, count))
+        print(event_type + ' - ' + str(count))
 
 
 while True:
@@ -78,16 +76,16 @@ while True:
     print('-- to return home type main menu --')
 
     response = str(input())
-    if response[0] == '1':
+    if response.startswith('1'):
         add_email()
 
-    elif response[0] == '2':
+    elif response.startswith('2'):
         log_attendance()
 
-    elif response[0] == '3':
+    elif response.startswith('3'):
         my_stats()
 
-    elif response[0] == '4':
+    elif response.startswith('4'):
         print('Thanks, Nicole!')
         break
 
