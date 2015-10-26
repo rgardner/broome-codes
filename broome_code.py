@@ -20,7 +20,7 @@ def add_email():
         for event_name in events:
             print(event_name)
 
-        with open('BroomeCodes.txt', 'a') as output:
+        with open('all_events.txt', 'a') as output:
             for event_name in events:
                 if 'Stream' in event_name:
                     output.write('Stream, ' + event_name)
@@ -37,7 +37,7 @@ def add_email():
 
 
 def log_attendance():
-    with open('BroomeCodes.txt', 'r') as events_file:
+    with open('all_events.txt', 'r') as events_file:
         events = events_file.readlines()
 
     for i, event_name in enumerate(events):
@@ -49,7 +49,7 @@ def log_attendance():
     event_index  = int(response)
     if event_index < len(events):
         attended_event_name = events[event_index]
-        with open('nicole_broome.txt', 'a') as nicole_stats:
+        with open('attended_events.txt', 'a') as nicole_stats:
             nicole_stats.write(attended_event_name)
     else:
         print('Invalid number')
@@ -57,7 +57,7 @@ def log_attendance():
 
 def my_stats():
     stats = collections.defaultdict(int)
-    with open('nicole_broome.txt', 'r') as nicole_stats:
+    with open('attended_events.txt', 'r') as nicole_stats:
         for line in nicole_stats.readlines():
             stream_type = line.split(',')[0]
             stats[stream_type] += 1
