@@ -7,51 +7,25 @@ print('Hello Nicole!')
 Step 2: find events in email
 with open, variables, list
 ```python
-with open('email.txt', 'r') as email:
-    lines = email.readlines()
+def add_email():
+    with open('email.txt', 'r') as email:
+        lines = email.readlines()
 
-events = []
-for line in lines:
-    if line.startswith('['):
-        events.append(line)
+    events = []
+    for line in lines:
+        if line.startswith('['):
+            events.append(line)
 
-for event in events:
-    print(event)
+    for event in events:
+        print(event)
+
+
+add_email()
 ```
 
 
 Step 3: Categorizing events based on Broome credit
 if/then
-```python
-with open('email.txt', 'r') as email:
-    lines = email.readlines()
-
-events = []
-for line in lines:
-    if line.startswith('['):
-        events.append(line)
-
-with open('BroomeCodes.txt', 'w') as output:
-    for event in events:
-        if 'Stream' in event:
-            output.write('Stream, {}'.format(event))
-        elif 'FFiR' in event:
-            output.write('FFiR, {}'.format(event))
-        elif 'BEAST' in event:
-            output.write('BEAST, {}'.format(event))
-        elif 'Floor' in event:
-            output.write('Floor, {}'.format(event))
-        elif 'Service' in event:
-            output.write('Service, {}'.format(event))
-        elif 'All Hall' in event:
-            output.write('All Hall, {}'.format(event))
-        else:
-            output.write('Other, {}'.format(event))
-```
-
-
-Step 4: Turn into a function
-functions
 ```python
 def add_email():
     with open('email.txt', 'r') as email:
@@ -79,11 +53,12 @@ def add_email():
             else:
                 output.write('Other, {}'.format(event))
 
+
 add_email()
 ```
 
 
-Step 5: Add log new attendance feature
+Step 4: Add log new attendance feature
 input
 ```python
 def add_email():
@@ -182,22 +157,22 @@ def log_attendance():
         print('Invalid number') 
 
 
-# while True:
-#    print('Broome Main Menu')
-#    print('1 - Add New Email')
-#    print('2 - Log New Attendance')
-#    print('-- enter the corresponding number of the action you wish to perform --')
+while True:
+   print('Broome Main Menu')
+   print('1 - Add New Email')
+   print('2 - Log New Attendance')
+   print('-- enter the corresponding number of the action you wish to perform --')
 
-#    response = input()
-#    if response[0] == '1':
-#        add_email()
+   response = str(input())
+   if response[0] == '1':
+       add_email()
 
-#    elif response[0] == '2':
-#        log_attendance()
+   elif response[0] == '2':
+       log_attendance()
 
-#    else:
-#        print('Unrecognized Number')
-#        print('Plase Try Again -- Meow')
+   else:
+       print('Unrecognized Number')
+       print('Plase Try Again -- Meow')
 ```
 
 
@@ -250,33 +225,33 @@ def log_attendance():
         print('Invalid number') 
 
 
-# def my_stats():
-#    stats = collections.defaultdict(int)
-#    with open('nicole_broome.txt', 'r+') as nicole_stats:
-#        for line in nicole_stats.readlines():
-#            stream_type = line.split(',')[0]
-#            stats[stream_type] += 1
+def my_stats():
+   stats = collections.defaultdict(int)
+   with open('nicole_broome.txt', 'r+') as nicole_stats:
+       for line in nicole_stats.readlines():
+           stream_type = line.split(',')[0]
+           stats[stream_type] += 1
 
-#    for event_type, count in stats.items():
-#        print('{} - {}'.format(event_type, count))
+   for event_type, count in stats.items():
+       print('{} - {}'.format(event_type, count))
 
 
 while True:
     print('Broome Main Menu')
     print('1 - Add New Email')
     print('2 - Log New Attendance')
-    # print('3 - Check my stats')
+    print('3 - Check my stats')
     print('-- enter the corresponding number of the action you wish to perform --')
 
-    response = input()
+    response = str(input())
     if response[0] == '1':
         add_email()
 
     elif response[0] == '2':
         log_attendance()
 
-#    elif response[0] == '3':
-#        my_stats()
+    elif response[0] == '3':
+        my_stats()
 
     else:
         print('Unrecognized Number')
