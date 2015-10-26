@@ -4,6 +4,7 @@ import os.path
 
 def add_email():
     print('-- to return home type main menu --')
+    print('reply yes to read in the email from email.txt')
     response = input()
     if 'main menu' in response.lower():
         return
