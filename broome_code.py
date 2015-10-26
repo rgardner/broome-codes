@@ -1,6 +1,7 @@
 import collections
 import os.path
 
+
 def add_email():
     print('-- to return home type main menu --')
     response = input()
@@ -36,6 +37,7 @@ def add_email():
                 else:
                     output.write('Other, {}'.format(event))
 
+
 def log_attendance():
     with open('BroomeCodes.txt', 'r') as events_file:
         events = events_file.readlines()
@@ -54,6 +56,7 @@ def log_attendance():
     else:
         print('Invalid number')
 
+
 def my_stats():
     stats = collections.defaultdict(int)
     with open('nicole_broome.txt', 'r+') as nicole_stats:
@@ -63,6 +66,7 @@ def my_stats():
 
     for event_type, count in stats.items():
         print('{} - {}'.format(event_type, count))
+
 
 while True:
     print('Broome Main Menu')
